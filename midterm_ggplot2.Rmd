@@ -1,0 +1,65 @@
+---
+title: "midterm_ggplot2"
+author: "elaine"
+date: "2017年1月19日"
+output: 
+  html_document:
+    toc: true
+    toc_depth: 6
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+## 資料概觀
+
+我使用`USArrests` 資料集，它的資訊如下:
+
+```{r echo = FALSE, message = FALSE}
+library(ggplot2)
+```
+
+```{r}
+str(USArrests)
+summary(USArrests)
+```
+
+##繪製散佈圖
+
+```{r}
+ggplot(USArrests, aes(x = Murder, y = Rape)) +
+  geom_point() +
+  ggtitle("USArrests Murder vs. Rape") +
+  xlab("Murder") +
+  ylab("Rape") +
+  geom_smooth(method = "lm")
+```
+
+## 繪製線圖
+
+```{r}
+head(USArrests)
+ggplot(USArrests, aes(x = Murder, y = Assault )) +
+  geom_point(colour = "pink") +
+  geom_line(colour = "blue")
+```
+
+## 繪製直方圖
+
+```{r}
+ggplot(USArrests, aes(x = UrbanPop)) +
+  geom_histogram(colour = "gray")
+```
+
+## 繪製盒鬚圖
+```{r}
+ggplot(USArrests, aes(x = 1, y = Rape)) +
+  geom_boxplot(outlier.colour = "purple", outlier.shape = 1)
+```
+
+## 繪製長條圖
+```{r}
+ggplot(USArrests, aes(x = row.names(USArrests), y = UrbanPop)) +
+  geom_bar(stat = "identity", colour = "lightpink") + coord_flip()
+```
+
